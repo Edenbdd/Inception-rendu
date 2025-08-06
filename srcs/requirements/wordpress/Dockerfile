@@ -10,21 +10,16 @@
 #                                                                              #
 # **************************************************************************** #
 
-FROM alpine:3.21
+FROM debian:bulleye
 
-RUN apk update
-RUN apk upgrade
+RUN apt-get -y update
+RUN apt-get -y upgrade
 
-RUN apk add curl
 RUN adduser -S -G www-data www-data
 
-RUN apk add php82 php82-mysqli\
+RUN apt-get install php82 php82-mysqli\
 	php82-curl php82-fpm\
 	php82-phar mariadb-client
-
-RUN ln -s /usr/bin/php82 /usr/bin/php
-
-RUN echo "memory_limit = 256M" >> /etc/php82/php.ini
 
 COPY ./conf/wordpress.sh ./wordpress.sh
 

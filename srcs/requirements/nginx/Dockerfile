@@ -10,15 +10,16 @@
 #                                                                              #
 # **************************************************************************** #
 
-FROM alpine:3.21
+FROM debian:bullseye
 
-RUN apk update
-RUN apk upgrade
+RUN apt-get -y update
+RUN apt-get -y upgrade
 
-RUN apk add nginx
-RUN apk add openssl
+RUN apt-get install nginx
+RUN apt-get install openssl
 
-RUN mkdir -p /etc/nginx/ssl
+RUN mkdir -p /etc/nginx/ssli
+
 RUN openssl req -x509 -nodes \
     -out /etc/nginx/ssl/inception.crt \
     -keyout /etc/nginx/ssl/inception.key \

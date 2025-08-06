@@ -10,14 +10,15 @@
 #                                                                              #
 # **************************************************************************** #
 
-FROM alpine:3.21
+FROM debian:bullseye
 
-RUN apk update
-RUN apk upgrade
+RUN apt-get update
+RUN apt-get upgrade -y
 
-RUN apk add mariadb mariadb-client
+RUN apt-get install -y mariadb mariadb-client
 
 COPY ./conf/mdb_conf.sh /usr/local/bin/mdb_conf.sh
 
 RUN chmod +x /usr/local/bin/mdb_conf.sh
 
+CMD ["/usr/local/bin/mdb_conf.sh"]
