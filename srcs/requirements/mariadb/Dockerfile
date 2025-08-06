@@ -14,8 +14,10 @@ FROM debian:bullseye
 
 RUN apt-get update
 RUN apt-get upgrade -y
+RUN apt-get clean
 
-RUN apt-get install -y mariadb mariadb-client
+RUN apt-get install -y apt-utils 
+RUN apt-get install -y mariadb-server mariadb-client
 
 COPY ./conf/mdb_conf.sh /usr/local/bin/mdb_conf.sh
 

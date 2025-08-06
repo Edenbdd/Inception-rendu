@@ -10,13 +10,14 @@
 #                                                                              #
 # **************************************************************************** #
 
-FROM debian:bulleye
+FROM debian:bullseye
 
 RUN apt-get -y update
 RUN apt-get -y upgrade
+RUN apt-get clean
 
-RUN adduser -S -G www-data www-data
-
+RUN apt-get install apt-utils
+	
 RUN apt-get install php82 php82-mysqli\
 	php82-curl php82-fpm\
 	php82-phar mariadb-client

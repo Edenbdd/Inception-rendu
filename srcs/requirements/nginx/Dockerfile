@@ -14,9 +14,10 @@ FROM debian:bullseye
 
 RUN apt-get -y update
 RUN apt-get -y upgrade
+RUN apt-get clean
 
-RUN apt-get install nginx
-RUN apt-get install openssl
+RUN apt-get apt-utils
+RUN apt-get install nginx openssl 
 
 RUN mkdir -p /etc/nginx/ssli
 
