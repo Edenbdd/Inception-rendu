@@ -16,11 +16,11 @@ RUN apt-get -y update
 RUN apt-get -y upgrade
 RUN apt-get clean
 
-RUN apt-get install apt-utils
-	
-RUN apt-get install php82 php82-mysqli\
-	php82-curl php82-fpm\
-	php82-phar mariadb-client
+RUN apt-get install -y apt-utils
+RUN apt-get install -y curl	
+RUN apt-get install -y php php-mysqli\
+	php-curl php-fpm\
+	php-phar mariadb-client
 
 COPY ./conf/wordpress.sh ./wordpress.sh
 

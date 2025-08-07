@@ -16,10 +16,10 @@ RUN apt-get -y update
 RUN apt-get -y upgrade
 RUN apt-get clean
 
-RUN apt-get apt-utils
-RUN apt-get install nginx openssl 
+RUN apt-get install -y apt-utils
+RUN apt-get install -y nginx openssl 
 
-RUN mkdir -p /etc/nginx/ssli
+RUN mkdir -p /etc/nginx/ssl
 
 RUN openssl req -x509 -nodes \
     -out /etc/nginx/ssl/inception.crt \
@@ -28,7 +28,6 @@ RUN openssl req -x509 -nodes \
 
 COPY ./conf/nginx.conf /nginx.conf
 
-RUN adduser -S -G www-data www-data
 RUN mkdir -p /var/www/wordpress
 RUN chown -R www-data:www-data /var/www/wordpress
 

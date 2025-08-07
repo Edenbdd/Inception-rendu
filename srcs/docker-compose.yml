@@ -50,6 +50,7 @@ volumes:
       o: bind
       type: none
   wordpress:
+    name: wordpress
     driver: local
     driver_opts:
       device: /home/data/wordpress
