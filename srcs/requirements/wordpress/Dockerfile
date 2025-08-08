@@ -18,9 +18,8 @@ RUN apt-get clean
 
 RUN apt-get install -y apt-utils
 RUN apt-get install -y curl	
-RUN apt-get install -y php php-mysqli\
-	php-curl php-fpm\
-	php-phar mariadb-client
+RUN apt-get install -y php php-mysql\
+	php7.4-fpm mariadb-client
 
 COPY ./conf/wordpress.sh ./wordpress.sh
 

@@ -26,10 +26,11 @@ RUN openssl req -x509 -nodes \
     -keyout /etc/nginx/ssl/inception.key \
     -subj "/C=FR/ST=Île-de-France/L=Paris/O=42/OU=42/CN=aubertra.42.fr/UID=aubertra"
 
-COPY ./conf/nginx.conf /nginx.conf
+COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 
 RUN mkdir -p /var/www/wordpress
 RUN chown -R www-data:www-data /var/www/wordpress
+
 
 ENTRYPOINT [ "nginx", "-g", "daemon off;"]
 

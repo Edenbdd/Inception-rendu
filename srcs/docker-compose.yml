@@ -1,6 +1,3 @@
-
-version: "2.4"
-
 services:
   mariadb: 
     container_name: mariadb
@@ -22,6 +19,8 @@ services:
       - "443:443"
     volumes: 
       - wordpress:/var/www/wordpress
+    env_file:
+      - ./.env
     restart: always
     depends_on:
       - wordpress
