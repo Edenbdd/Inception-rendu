@@ -10,29 +10,29 @@
 #                                                                              #
 # **************************************************************************** #
 
-WORDPRESS_DATA = /home/data/wordpress
-MARIADB_DATA = /home/data/mariadb
+WORDPRESS_DATA = ~/data/wordpress
+MARIADB_DATA = ~/data/mariadb
 
 all: up
 
 re: clean up
 
 up: build
-	docker-compose up -d
+	docker-compose -f ./srcs/docker-compose.yml up -d
 
 build:
 	mkdir -p  $(WORDPRESS_DATA)
 	mkdir -p $(MARIADB_DATA)
-	docker-compose build -d
+	docker-compose -f ./srcs/docker-compose.yml build
 
 down:
-	docker-compose down -d
+	docker-compose -f ./srcs/docker-compose.yml down
 
 start:
-	docker-compose start -d
+	docker-compose -f ./srcs/docker-compose.yml start
 
 stop:
-	docker-compose stop -d
+	docker-compose -f ./srcs/docker-compose.yml stop
 
 clean:
 	docker stop $$(docker ps -qa) || true
@@ -40,11 +40,9 @@ clean:
 	docker rmi -f $$(docker images -qa) || true
 	docker volume rm $$(docker volumes ls -q) || true
 	docker network rm $$(docker network ls -q) || true
-	rm -rf $(WORDPRESS_DATA) || true
-	rm -rf $(MARIADB_DATA) || true
 
 prune: clean
 	docker system prune -a --volumes -f
 
 
-.PHONY: all up build down start stop clean
+.PHONY: all up build down start stop prune re clean
