@@ -10,19 +10,19 @@
 #                                                                              #
 # **************************************************************************** #
 
-WORDPRESS_DATA = ~/data/wordpress
-MARIADB_DATA = ~/data/mariadb
+WORDPRESS_DATA = /home/$${USER}/data/wordpress
+MARIADB_DATA = /home/$${USER}/data/mariadb
 
 all: up
 
 re: clean up
 
 up: build
+	mkdir -p  $(WORDPRESS_DATA)
+	mkdir -p $(MARIADB_DATA)
 	docker-compose -f ./srcs/docker-compose.yml up -d
 
 build:
-	mkdir -p  $(WORDPRESS_DATA)
-	mkdir -p $(MARIADB_DATA)
 	docker-compose -f ./srcs/docker-compose.yml build
 
 down:
